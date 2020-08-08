@@ -1,0 +1,237 @@
+local LoadingScreen = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local LoadingBar = Instance.new("Frame")
+local TickLoading = Instance.new("Frame")
+local LoadingText = Instance.new("TextLabel")
+local Icon = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local OuterFrame = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local Icon2 = Instance.new("ImageLabel")
+local UICorner_4 = Instance.new("UICorner")
+local Icon3 = Instance.new("ImageLabel")
+local UICorner_5 = Instance.new("UICorner")
+
+LoadingScreen.Name = "LoadingScreen"
+LoadingScreen.Parent = game.CoreGui
+LoadingScreen.Enabled = false
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = LoadingScreen
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Position = UDim2.new(0.391370177, 0, 0.336609334, 0)
+MainFrame.Size = UDim2.new(0, 309, 0, 297)
+MainFrame.Active = true
+
+UICorner.CornerRadius = UDim.new(0, 200)
+UICorner.Parent = MainFrame
+
+LoadingBar.Name = "LoadingBar"
+LoadingBar.Parent = MainFrame
+LoadingBar.BackgroundColor3 = Color3.fromRGB(236, 236, 236)
+LoadingBar.BorderSizePixel = 0
+LoadingBar.Position = UDim2.new(0.110032365, 0, 0.639730632, 0)
+LoadingBar.Size = UDim2.new(0, 241, 0, 39)
+LoadingBar.ZIndex = 2
+
+TickLoading.Name = "TickLoading"
+TickLoading.Parent = LoadingBar
+TickLoading.BackgroundColor3 = Color3.fromRGB(37, 255, 175)
+TickLoading.BorderSizePixel = 0
+TickLoading.Position = UDim2.new(-0.00203315448, 0, 0, 0)
+TickLoading.Size = UDim2.new(0, 9, 0, 39)
+TickLoading.ZIndex = 2
+
+LoadingText.Name = "LoadingText"
+LoadingText.Parent = MainFrame
+LoadingText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LoadingText.BackgroundTransparency = 1.000
+LoadingText.Position = UDim2.new(0.207119748, 0, 0.771043777, 0)
+LoadingText.Size = UDim2.new(0, 180, 0, 35)
+LoadingText.ZIndex = 2
+LoadingText.Font = Enum.Font.SourceSans
+LoadingText.Text = "Loading..."
+LoadingText.TextColor3 = Color3.fromRGB(37, 255, 175)
+LoadingText.TextSize = 20.000
+
+Icon.Name = "Icon"
+Icon.Parent = MainFrame
+Icon.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Icon.BackgroundTransparency = 1.000
+Icon.Position = UDim2.new(0.237896472, 0, 0.17845118, 0)
+Icon.Size = UDim2.new(0, 159, 0, 119)
+Icon.ZIndex = 2
+Icon.Image = "http://www.roblox.com/asset/?id=5506563673"
+
+UICorner_2.Parent = Icon
+
+OuterFrame.Name = "OuterFrame"
+OuterFrame.Parent = MainFrame
+OuterFrame.BackgroundColor3 = Color3.fromRGB(37, 255, 175)
+OuterFrame.Position = UDim2.new(-0.0453074425, 0, -0.0404040404, 0)
+OuterFrame.Size = UDim2.new(0, 335, 0, 322)
+OuterFrame.ZIndex = 0
+
+UICorner_3.CornerRadius = UDim.new(0, 200)
+UICorner_3.Parent = OuterFrame
+
+Icon2.Name = "Icon2"
+Icon2.Parent = MainFrame
+Icon2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Icon2.BackgroundTransparency = 1.000
+Icon2.Position = UDim2.new(0.237896472, 0, 0.17845118, 0)
+Icon2.Rotation = 10.000
+Icon2.Size = UDim2.new(0, 159, 0, 119)
+Icon2.Visible = false
+Icon2.ZIndex = 2
+Icon2.Image = "http://www.roblox.com/asset/?id=5506563673"
+
+UICorner_4.Parent = Icon2
+
+Icon3.Name = "Icon3"
+Icon3.Parent = MainFrame
+Icon3.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Icon3.BackgroundTransparency = 1.000
+Icon3.Position = UDim2.new(0.237896472, 0, 0.17845118, 0)
+Icon3.Rotation = -10.000
+Icon3.Size = UDim2.new(0, 159, 0, 119)
+Icon3.Visible = false
+Icon3.ZIndex = 2
+Icon3.Image = "http://www.roblox.com/asset/?id=5506563673"
+
+UICorner_5.Parent = Icon3
+
+-- Scripts:
+
+local function YSXFO_fake_script() -- TickLoading.Script 
+	local script = Instance.new('Script', TickLoading)
+
+	local screen = math.random(1,3)
+	 
+	if screen == 1 then
+	 print '1'
+	 script.Parent.Parent.Parent.Parent.Enabled = true
+	 wait(2)
+	 
+	 script.Parent:TweenSize(UDim2.new(.3, 1, 1), "Out", "Linear", 2, true)
+	 wait(2)
+	 script.Parent:TweenSize(UDim2.new(.5, 1, 1), "Out", "Linear", 1, true)
+	 wait(3)
+	 script.Parent:TweenSize(UDim2.new(1, 1, 1), "Out", "Linear", 1, true)
+	 
+	 
+	 wait(1)
+	 script.Parent.Parent.Parent.Parent.Enabled = false
+	 wait(1)
+	 script.Parent:TweenSize(UDim2.new(0, 0, 0), "Out", "Linear", 1, true)
+	end
+	 
+	if screen == 2 then
+	 print '2'
+	 script.Parent.Parent.Parent.Parent.Enabled = true
+	 wait(2)
+	 
+	 script.Parent:TweenSize(UDim2.new(.1, 1, 1), "Out", "Linear", 3, true)
+	 wait(1)
+	 script.Parent:TweenSize(UDim2.new(.4, 1, 1), "Out", "Linear", 2, true)
+	 wait(4)
+	 script.Parent:TweenSize(UDim2.new(.7, 1, 1), "Out", "Linear", 3, true)
+	 wait(1)
+	 script.Parent:TweenSize(UDim2.new(1, 1, 1), "Out", "Linear", 1, true)
+	 
+	 
+	 wait(1)
+	 script.Parent.Parent.Parent.Parent.Enabled = false
+	 wait(1)
+	 script.Parent:TweenSize(UDim2.new(0, 0, 0), "Out", "Linear", 1, true) 
+	end
+	if screen == 3 then
+	 print '3'
+	 script.Parent.Parent.Parent.Parent.Enabled = true
+	 wait(2)
+	 
+	 script.Parent:TweenSize(UDim2.new(.6, 1, 1), "Out", "Linear", 2, true)
+	 wait(2)
+	 script.Parent:TweenSize(UDim2.new(.8, 1, 1), "Out", "Linear", 3, true)
+	 wait(3)
+	 script.Parent:TweenSize(UDim2.new(1, 1, 1), "Out", "Linear", 1, true)
+	 
+	 
+	 wait(1)
+	 script.Parent.Parent.Parent.Parent.Enabled = false
+	 wait(1)
+	 script.Parent:TweenSize(UDim2.new(0, 0, 0), "Out", "Linear", 1, true)
+	end
+end
+coroutine.wrap(YSXFO_fake_script)()
+local function KIXTVT_fake_script() -- LoadingText.Script 
+	local script = Instance.new('Script', LoadingText)
+
+	local L = script.Parent
+	
+	L.Text = "Loading..1%"
+	wait(0.1)
+	L.Text = "Loading...2%"
+	wait(0.3)
+	L.Text = "Loading..3%"
+	wait(0.1)
+	L.Text = "Loading...10%"
+	wait(0.1)
+	L.Text = "Loading..13%"
+	wait(0.1)
+	L.Text = "Loading...14%"
+	wait(0.1)
+	L.Text = "Loading..15%"
+	wait(1.5)
+	L.Text = "Loading...20%"
+	wait(0.1)
+	L.Text = "Loading..23%"
+	wait(0.5)
+	L.Text = "Loading...42%"
+	wait(0.1)
+	L.Text = "Loading..43%"
+	wait(0.1)
+	L.Text = "Loading...46%"
+	wait(1)
+	L.Text = "Loading..65%"
+	wait(0.1)
+	L.Text = "Loading...67%"
+	wait(0.1)
+	L.Text = "Loading..78%"
+	wait(0.1)
+	L.Text = "Loading...89%"
+	wait(0.1)
+	L.Text = "Loading..90%"
+	wait(1)
+	L.Text = "Loading...99%"
+	wait(0.5)
+	L.Text = "Loading..100%"
+	wait(0.1)
+	L.Text = "Done!"
+	
+	
+end
+coroutine.wrap(KIXTVT_fake_script)()
+local function VDIIRQX_fake_script() -- MainFrame.Script 
+	local script = Instance.new('Script', MainFrame)
+
+	local Icon = script.Parent.Icon
+	local Icon2 = script.Parent.Icon2
+	local Icon3 = script.Parent.Icon3
+	
+	while wait() do
+	Icon.Visible = false
+		Icon2.Visible = true
+		wait(0.8)
+		Icon2.Visible = false
+		Icon.Visible = true
+		wait(0.8)
+		Icon.Visible = false
+		Icon3.Visible = true
+		wait(0.8)
+		Icon3.Visible = false
+		Icon.Visible = true
+	end
+end
+coroutine.wrap(VDIIRQX_fake_script)()
