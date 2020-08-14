@@ -1,0 +1,438 @@
+for _, v in pairs(game.CoreGui:GetChildren()) do
+    if v.Name == "UILib" then
+        v:Destroy()
+    end
+end
+ 
+local UILib = Instance.new("ScreenGui")
+ 
+UILib.Name = "UILib"
+UILib.Parent = game.CoreGui
+UILib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ 
+local function getNextWindowPos()
+    local biggest = 0;
+    local ok = nil;
+    for i, v in pairs(UILib:GetChildren()) do
+        if v.Position.X.Offset > biggest then
+            biggest = v.Position.X.Offset
+            ok = v;
+        end
+    end
+    if biggest == 0 then
+        biggest = biggest + 5;
+    else
+        biggest = biggest + ok.Size.X.Offset + 5;
+    end
+    
+    return biggest;
+end
+ 
+local Library = {}
+ 
+function Library:Window(title)
+    local TopFrame = Instance.new("Frame")
+    local Title = Instance.new("TextLabel")
+    local Minimize = Instance.new("TextButton")
+    local Container = Instance.new("Frame")
+    local RainbowBar = Instance.new("Frame")
+    local UIListLayout = Instance.new("UIListLayout")
+    local Padding = Instance.new("Frame")
+    
+    TopFrame.Name = "TopFrame"
+    TopFrame.Parent = UILib
+    TopFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    TopFrame.BorderSizePixel = 0
+    TopFrame.Position = UDim2.new(0, getNextWindowPos() + 10, 0, 10)
+    TopFrame.Size = UDim2.new(0, 161, 0, 47)
+ 
+    Title.Name = "Title"
+    Title.Parent = TopFrame
+    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundTransparency = 1.000
+    Title.Position = UDim2.new(0.217391297, 0, -0.0351191983, 0)
+    Title.Size = UDim2.new(0, 95, 0, 40)
+    Title.Font = Enum.Font.SourceSans
+    Title.Text = title
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 25.000
+    Title.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextStrokeTransparency = 0.850
+    Title.TextWrapped = true
+ 
+    Minimize.Name = "Minimize"
+    Minimize.Parent = TopFrame
+    Minimize.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    Minimize.BackgroundTransparency = 1.000
+    Minimize.BorderSizePixel = 0
+    Minimize.Position = UDim2.new(0.844720483, 0, 0.170212761, 0)
+    Minimize.Size = UDim2.new(0, 25, 0, 22)
+    Minimize.Font = Enum.Font.SourceSans
+    Minimize.Text = "-"
+    Minimize.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Minimize.TextSize = 30.000
+    Minimize.TextWrapped = true
+ 
+    Container.Name = "Container"
+    Container.Parent = TopFrame
+    Container.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    Container.BackgroundTransparency = 1.000
+    Container.Position = UDim2.new(0, 0, 0.00527994661, 0)
+    Container.Size = UDim2.new(0, 161, 0, 38)
+ 
+    RainbowBar.Name = "RainbowBar"
+    RainbowBar.Parent = Container
+    RainbowBar.BackgroundColor3 = Color3.fromRGB(37, 255, 175)
+    RainbowBar.BorderSizePixel = 0
+    RainbowBar.LayoutOrder = 1
+    RainbowBar.Position = UDim2.new(0, 0, 0.996014893, 0)
+    RainbowBar.Size = UDim2.new(0, 160, 0, 2)
+ 
+    UIListLayout.Parent = Container
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    Padding.Name = "Padding"
+    Padding.Parent = Container
+    Padding.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Padding.BackgroundTransparency = 1.000
+    Padding.LayoutOrder = -1
+    Padding.Size = UDim2.new(0, 161, 0, 38)
+    
+    local Contain = Container
+    local Mini = Minimize
+    
+    Mini.MouseButton1Click:Connect(function()
+        if Contain.Visible == true then
+            Contain.Visible = false
+            Mini.Text = "+"
+            TopFrame.Size = UDim2.new(0, 161, 0, 33)
+        else
+            Contain.Visible = true
+            Mini.Text = "-"
+            TopFrame.Size = UDim2.new(0, 161, 0, 47)
+        end
+    end)
+    
+    local function zigzag(X)
+        return math.acos(math.cos(X * math.pi)) / math.pi
+    end
+     
+    local counter = 0
+     
+    local function ColorShift()
+        while wait(0.1) do
+            RainbowBar.BackgroundColor3 = Color3.fromHSV(zigzag(counter), 1, 1)
+     
+            counter = counter + 0.01
+        end
+    end
+    
+    spawn(ColorShift)
+    
+    local Lib = {}
+    
+    function Lib:Button(name, callback)
+        local ButtonContainer = Instance.new("Frame")
+        local Button = Instance.new("TextButton")
+        
+        ButtonContainer.Name = "ButtonContainer"
+        ButtonContainer.Parent = Container
+        ButtonContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        ButtonContainer.BorderSizePixel = 0
+        ButtonContainer.Size = UDim2.new(0, 161, 0, 45)
+ 
+        Button.Name = "Button"
+        Button.Parent = ButtonContainer
+        Button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        Button.Position = UDim2.new(0.0496895351, 0, 0.102717705, 0)
+        Button.Size = UDim2.new(0, 143, 0, 35)
+        Button.Text = name
+        Button.ZIndex = 2
+        Button.Font = Enum.Font.SourceSans
+        Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Button.TextSize = 18.000
+        Button.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+        Button.TextStrokeTransparency = 0.900
+        Button.TextScaled = true
+        
+        Button.MouseButton1Down:connect(function()
+            callback()
+        end)
+    end
+    
+    function Lib:Toggle(name, callback)
+        local ToggleContainer = Instance.new("Frame")
+        local ToggleBack = Instance.new("Frame")
+        local Toggle = Instance.new("TextButton")
+        local ToggleName = Instance.new("TextLabel")
+        
+        ToggleContainer.Name = "ToggleContainer"
+        ToggleContainer.Parent = Container
+        ToggleContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        ToggleContainer.BorderSizePixel = 0
+        ToggleContainer.Size = UDim2.new(0, 161, 0, 45)
+ 
+        ToggleBack.Name = "ToggleBack"
+        ToggleBack.Parent = ToggleContainer
+        ToggleBack.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        ToggleBack.Position = UDim2.new(0.0496895351, 0, 0.108659469, 0)
+        ToggleBack.Size = UDim2.new(0, 143, 0, 35)
+ 
+        Toggle.Name = "Toggle"
+        Toggle.Parent = ToggleBack
+        Toggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        Toggle.Position = UDim2.new(0.777961254, 0, 0.19770138, 0)
+        Toggle.Size = UDim2.new(0, 23, 0, 20)
+        Toggle.Font = Enum.Font.SourceSans
+        Toggle.Text = ""
+        Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+        Toggle.TextSize = 14.000
+ 
+        ToggleName.Name = "ToggleName"
+        ToggleName.Parent = ToggleBack
+        ToggleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ToggleName.BackgroundTransparency = 1.000
+        ToggleName.Position = UDim2.new(0.182469696, 0, -0.119080693, 0)
+        ToggleName.Size = UDim2.new(0, 84, 0, 43)
+        ToggleName.Font = Enum.Font.SourceSans
+        ToggleName.Text = name
+        ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ToggleName.TextSize = 20.000
+        ToggleName.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+        ToggleName.TextStrokeTransparency = 0.900
+        ToggleName.TextScaled = true
+        
+        local T = Toggle
+        local Toggle = false
+    
+        T.MouseButton1Click:Connect(function()
+            if Toggle == false then
+                T.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                Toggle = true
+            else
+                T.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                Toggle = false
+            end
+            callback(Toggle)
+        end)
+    end
+    
+    function Lib:Slider(name, min, max, start, callback)
+        local SliderContainer = Instance.new("Frame")
+        local Slider = Instance.new("Frame")
+        local SliderName = Instance.new("TextLabel")
+        local SliderDot = Instance.new("Frame")
+        local SliderValue = Instance.new("TextLabel")
+        local dragging = false
+        
+        SliderContainer.Name = "SliderContainer"
+        SliderContainer.Parent = Container
+        SliderContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        SliderContainer.BorderSizePixel = 0
+        SliderContainer.Size = UDim2.new(0, 161, 0, 45)
+ 
+        Slider.Name = "Slider"
+        Slider.Parent = SliderContainer
+        Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Slider.Position = UDim2.new(0.0807453394, 0, 0.642487049, 0)
+        Slider.Size = UDim2.new(0, 135, 0, 5)
+ 
+        SliderName.Name = "SliderName"
+        SliderName.Parent = Slider
+        SliderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SliderName.BackgroundTransparency = 1.000
+        SliderName.Position = UDim2.new(0.00740729645, 0, -6.19999361, 0)
+        SliderName.Size = UDim2.new(0, 116, 0, 27)
+        SliderName.Font = Enum.Font.SourceSans
+        SliderName.Text = name
+        SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        SliderName.TextSize = 20.000
+        SliderName.TextStrokeTransparency = 0.900
+        SliderName.TextScaled = true
+ 
+        SliderDot.Name = "SliderDot"
+        SliderDot.Parent = Slider
+        SliderDot.BackgroundColor3 = Color3.fromRGB(85, 255, 127)
+        SliderDot.BorderSizePixel = 0
+        SliderDot.Position = UDim2.new(0, 0, 0, 0)
+        SliderDot.Size = UDim2.new((start or 0) / max, 0, 1, 0);
+ 
+        SliderValue.Name = "SliderValue"
+        SliderValue.Parent = Slider
+        SliderValue.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        SliderValue.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        SliderValue.BorderSizePixel = 0
+        SliderValue.Position = UDim2.new(0.73299998, 0, -5.5999999, 0)
+        SliderValue.Size = UDim2.new(0, 36, 0, 21)
+        SliderValue.Font = Enum.Font.SourceSans
+        SliderValue.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0);
+        SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+        SliderValue.TextSize = 14.000
+        
+        local function slide(input)
+            local pos = UDim2.new(math.clamp((input.Position.X - Slider.AbsolutePosition.X) / Slider.AbsoluteSize.X, 0, 1), 0, 1, 0);
+            SliderDot:TweenSize(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true);
+            local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min);
+            SliderValue.Text = tostring(value);
+            callback(value);
+        end;
+ 
+        Slider.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true;
+            end;
+        end);
+ 
+        Slider.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = false;
+            end;
+        end);
+ 
+        Slider.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                slide(input);
+            end;
+        end);
+ 
+        game:GetService("UserInputService").InputChanged:Connect(function(input)
+            if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                slide(input);
+            end;
+        end)
+    end
+    
+    function Lib:Dropdown(name, options, callback)
+        local DropdownContainer = Instance.new("Frame")
+        local DropdownBack = Instance.new("Frame")
+        local DropdownName = Instance.new("TextLabel")
+        local DropdownContain = Instance.new("Frame")
+        local ScrollDropdown = Instance.new("ScrollingFrame")
+        local UIListLayout_2 = Instance.new("UIListLayout")
+        local RightArrow = Instance.new("ImageButton")
+        local OpenDropdown = Instance.new("TextButton")
+        
+        DropdownContainer.Name = "DropdownContainer"
+        DropdownContainer.Parent = Container
+        DropdownContainer.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        DropdownContainer.BorderSizePixel = 0
+        DropdownContainer.Position = UDim2.new(0, 0, 0.39896372, 0)
+        DropdownContainer.Size = UDim2.new(0, 161, 0, 45)
+ 
+        DropdownBack.Name = "DropdownBack"
+        DropdownBack.Parent = DropdownContainer
+        DropdownBack.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        DropdownBack.Position = UDim2.new(0.0559006222, 0, 0.0959852338, 0)
+        DropdownBack.Size = UDim2.new(0, 143, 0, 35)
+ 
+        DropdownName.Name = "DropdownName"
+        DropdownName.Parent = DropdownBack
+        DropdownName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        DropdownName.BackgroundTransparency = 1.000
+        DropdownName.Position = UDim2.new(0.062937066, 0, 0.0571432933, 0)
+        DropdownName.Size = UDim2.new(0, 117, 0, 30)
+        DropdownName.Font = Enum.Font.SourceSans
+        DropdownName.Text = name
+        DropdownName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        DropdownName.TextSize = 20.000
+        DropdownName.TextStrokeTransparency = 0.900
+        DropdownName.TextScaled = true
+ 
+        DropdownContain.Name = "DropdownContain"
+        DropdownContain.Parent = DropdownBack
+        DropdownContain.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        DropdownContain.BorderSizePixel = 0
+        DropdownContain.Position = UDim2.new(0.50999999, 0, -0.741999984, 0)
+        DropdownContain.Size = UDim2.new(1.12587416, 0, 2.34285712, 0)
+        DropdownContain.Visible = false
+ 
+        ScrollDropdown.Name = "ScrollDropdown"
+        ScrollDropdown.Parent = DropdownContain
+        ScrollDropdown.Active = true
+        ScrollDropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ScrollDropdown.BackgroundTransparency = 1.000
+        ScrollDropdown.Size = UDim2.new(0, 161, 0, 82)
+        ScrollDropdown.CanvasSize = UDim2.new(0, 0, 15, 0)
+ 
+        UIListLayout_2.Parent = ScrollDropdown
+        UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+ 
+        RightArrow.Name = "RightArrow"
+        RightArrow.Parent = DropdownBack
+        RightArrow.BackgroundTransparency = 1.000
+        RightArrow.Position = UDim2.new(0.824746013, 0, 0.124043517, 0)
+        RightArrow.Size = UDim2.new(0, 25, 0, 25)
+        RightArrow.Image = "rbxassetid://3926305904"
+        RightArrow.ImageRectOffset = Vector2.new(924, 884)
+        RightArrow.ImageRectSize = Vector2.new(36, 36)
+ 
+        OpenDropdown.Name = "OpenDropdown"
+        OpenDropdown.Parent = DropdownBack
+        OpenDropdown.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        OpenDropdown.BackgroundTransparency = 1.000
+        OpenDropdown.Position = UDim2.new(0.79677403, 0, 0.124043055, 0)
+        OpenDropdown.Size = UDim2.new(0, 22, 0, 25)
+        OpenDropdown.ZIndex = 3
+        OpenDropdown.Font = Enum.Font.SourceSans
+        OpenDropdown.Text = ""
+        OpenDropdown.TextColor3 = Color3.fromRGB(0, 0, 0)
+        OpenDropdown.TextSize = 14.000
+        
+        local Open = OpenDropdown
+        local Arrow = RightArrow
+        local DropContain = DropdownContain
+        local Toggle = false
+    
+        Open.MouseButton1Click:Connect(function()
+            if Toggle == false then
+                DropContain:TweenPosition(UDim2.new(1.119, 0, -0.714, 0), nil, nil, nil, true)
+                wait(0.3)
+                DropContain.Visible = true
+                game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    Rotation = 180
+                }):Play();
+                Toggle = true
+            else
+                DropContain:TweenPosition(UDim2.new(0.51, 0, -0.742, 0), nil, nil, nil, true)
+                wait(0.1)
+                DropContain.Visible = false
+                game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    Rotation = 0
+                }):Play();
+                Toggle = false
+            end
+        end)
+        
+        for _, v in pairs(options) do
+            local DropdownButton = Instance.new("TextButton")
+            
+                    DropdownButton.Name = "DropdownButton"
+        DropdownButton.Parent = ScrollDropdown
+        DropdownButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+            DropdownButton.Position = UDim2.new(0, 0, -1.86082787e-07, 0)
+            DropdownButton.BorderSizePixel = 0
+        DropdownButton.Size = UDim2.new(0, 148, 0, 20)
+        DropdownButton.Font = Enum.Font.SourceSans
+        DropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            DropdownButton.TextSize = 20.000
+            DropdownButton.Text = tostring(v)
+            
+            DropdownButton.MouseButton1Down:connect(function()
+                callback(v)
+                DropContain:TweenPosition(UDim2.new(0.51, 0, -0.742, 0), nil, nil, nil, true)
+                wait(0.1)
+                DropContain.Visible = false
+                game:GetService("TweenService"):Create(Arrow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                    Rotation = 0
+                }):Play();
+                Toggle = false
+                DropdownName.Text = name.." | "..tostring(v)
+            end)
+        end
+    end
+    
+    return Lib
+    
+end
+ 
+return Library
