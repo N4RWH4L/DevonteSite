@@ -1,0 +1,67 @@
+function Noti(text, time)
+		local ScreenGui = Instance.new("ScreenGui")
+		local Main = Instance.new("Frame")
+		local UICorner = Instance.new("UICorner")
+		local Ani = Instance.new("Frame")
+		local UICorner_2 = Instance.new("UICorner")
+		local Text = Instance.new("TextLabel")
+
+		ScreenGui.Parent = game.CoreGui
+		ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+		Main.Name = "Main"
+		Main.Parent = ScreenGui
+		Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		Main.Position = UDim2.new(0.425, 0, 1.1, 0)
+		Main.Size = UDim2.new(0, 266, 0, 42)
+		Main.Active = true
+
+		UICorner.CornerRadius = UDim.new(0, 10)
+		UICorner.Parent = Main
+
+		Ani.Name = "Ani"
+		Ani.Parent = Main
+		Ani.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Ani.Position = UDim2.new(-0.00325574377, 0, -0.00447742967, 0)
+		Ani.Size = UDim2.new(0, 266, 0, 0)
+		Ani.Visible = false
+
+		UICorner_2.CornerRadius = UDim.new(0, 10)
+		UICorner_2.Parent = Ani
+
+		Text.Name = "Text"
+		Text.Parent = Main
+		Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Text.BackgroundTransparency = 1.000
+		Text.Position = UDim2.new(0, 0, 0.0987912118, 0)
+		Text.Size = UDim2.new(0, 266, 0, 32)
+		Text.Visible = false
+		Text.Font = Enum.Font.GothamSemibold
+		Text.Text = text
+		Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Text.TextScaled = true
+		Text.TextSize = 14.000
+		Text.TextWrapped = true
+
+		Main:TweenPosition(UDim2.fromScale(0.425, 0.925), "Out", "Quad", 1, true)
+		wait(0.7)
+		Ani.Visible = true
+		Ani:TweenSize(UDim2.new(0, 266,0, 42), "Out", "Quad", 0.25, true)
+		wait(0.25)
+		Ani:TweenSize(UDim2.new(0, 266,0, 0), "Out", "Quad", 0.35, true)
+		wait(0.25)
+		Ani.Visible = false
+		Text.Visible = true
+		wait(time)
+		Ani.Visible = true
+		Ani:TweenSize(UDim2.new(0, 266,0, 42), "Out", "Quad", 0.25, true)
+		wait(0.25)
+		Ani:TweenSize(UDim2.new(0, 266,0, 0), "Out", "Quad", 0.35, true)
+		Text.Visible = false
+		wait(0.25)
+		Ani.Visible = false
+		wait(0.35)
+		Main:TweenPosition(UDim2.fromScale(0.425, 1.1), "Out", "Quad", 1, true)
+		wait(1)
+		Main:Destroy()
+end
