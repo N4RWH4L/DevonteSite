@@ -84,40 +84,12 @@ function Library:Window(title)
 
 	Mini.MouseButton1Click:Connect(function()
 		if Mini.BackgroundColor3 == Color3.fromRGB(0, 255, 128) then
-			Mini.BackgroundColor3 = Color3.fromRGB(255, 0, 102)
+			game:GetService("TweenService"):Create(Mini, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(255, 0, 102)}):Play()
 			Main:TweenSize(UDim2.new(0, 389,0, 0), "Out", "Quad", 0.4, true)
 		else
-			Mini.BackgroundColor3 = Color3.fromRGB(0, 255, 128)
+			game:GetService("TweenService"):Create(Mini, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(0, 255, 128)}):Play()
 			Main:TweenSize(UDim2.new(0, 389,0, 234), "Out", "Quad", 0.4, true)
 		end
-	end)
-
-	Mini.MouseButton1Down:Connect(function()
-		local c = Instance.new("ImageLabel", Mini)
-		local Mouse = game.Players.LocalPlayer:GetMouse()
-		c.BackgroundTransparency = 1
-		c.Image = "rbxassetid://3570695787"
-		c.ImageTransparency = 0.6
-		c.Position = UDim2.new(0, (Mouse.X - c.AbsolutePosition.X), 0, (Mouse.Y - c.AbsolutePosition.Y))
-		c.ScaleType = "Slice"
-		c.SliceCenter = Rect.new(100, 100, 100, 100)
-		c.SliceScale = 1
-		local Size = 0
-		if Mini.AbsoluteSize.X > Mini.AbsoluteSize.Y then
-			Size = Mini.AbsoluteSize.X*1.5
-		elseif Mini.AbsoluteSize.X < Mini.AbsoluteSize.Y then
-			Size = Mini.AbsoluteSize.Y*1.5
-		elseif Mini.AbsoluteSize.X == Mini.AbsoluteSize.Y then
-			Size = Mini.AbsoluteSize.X*1.5
-		end
-		c:TweenSizeAndPosition(UDim2.new(0, Size, 0, Size), UDim2.new(.5, -Size/2, .5, -Size/2), "Out", "Linear", .5)
-		Mini.MouseButton1Up:Connect(function()
-			while c.ImageTransparency ~= 1 do
-				wait()
-				c.ImageTransparency = c.ImageTransparency + 0.02
-				if c.ImageTransparency == 1 then c:Destroy() end
-			end
-		end)
 	end)
 
 	function dragify(Frame)
