@@ -255,11 +255,11 @@ function Library:Window(title)
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
 					v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-					v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.2, true)
+					v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.15, true)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
-			TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.2, true)
+			TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.15, true)
 		end)
 
 		local Lib = {}
@@ -383,10 +383,10 @@ function Library:Window(title)
 
 			Toggle.MouseButton1Click:Connect(function()
 				if ToggleLogo.BackgroundColor3 == Color3.fromRGB(255, 255, 255) then
-					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
 					callback(true)
 				else
-					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
 					callback(false)
 				end
 			end)
