@@ -35,6 +35,7 @@ function Library:Window(title)
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0, 0, 1, 0)
 	Main.Size = UDim2.new(0, 389, 0, 234)
+	Main.ClipsDescendants = true
 
 	TabHolder.Name = "TabHolder"
 	TabHolder.Parent = Main
@@ -84,13 +85,10 @@ function Library:Window(title)
 	Mini.MouseButton1Click:Connect(function()
 		if Mini.BackgroundColor3 == Color3.fromRGB(0, 255, 128) then
 			Mini.BackgroundColor3 = Color3.fromRGB(255, 0, 102)
-			Main.ClipsDescendants = true
 			Main:TweenSize(UDim2.new(0, 389,0, 0), "Out", "Quad", 0.4, true)
 		else
 			Mini.BackgroundColor3 = Color3.fromRGB(0, 255, 128)
 			Main:TweenSize(UDim2.new(0, 389,0, 234), "Out", "Quad", 0.4, true)
-			wait(0.3)
-			Main.ClipsDescendants = false
 		end
 	end)
 
@@ -238,9 +236,11 @@ function Library:Window(title)
         for i,v in pairs(TabHolder:GetChildren()) do
 			if v.Name == "TabButton" then
 				v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.2, true)
 			end
 		end
 		TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+		TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.2, true)
 
 		TabButton.MouseButton1Click:Connect(function()
 			for i,v in pairs(Main:GetChildren()) do
@@ -255,9 +255,11 @@ function Library:Window(title)
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
 					v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+					v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.2, true)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+			TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.2, true)
 		end)
 
 		local Lib = {}
@@ -413,7 +415,7 @@ function Library:Window(title)
 			SliderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SliderName.BackgroundTransparency = 1.000
 			SliderName.Position = UDim2.new(0.0282258056, 0, 0.178571433, 0)
-			SliderName.Size = UDim2.new(0, 56, 0, 19)
+			SliderName.Size = UDim2.new(0, 80, 0, 19)
 			SliderName.ZIndex = 2
 			SliderName.Font = Enum.Font.Gotham
 			SliderName.Text = name
@@ -514,7 +516,7 @@ function Library:Window(title)
 			BoxName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			BoxName.BackgroundTransparency = 1.000
 			BoxName.Position = UDim2.new(0.0282258056, 0, 0.142857149, 0)
-			BoxName.Size = UDim2.new(0, 56, 0, 19)
+			BoxName.Size = UDim2.new(0, 80, 0, 19)
 			BoxName.Font = Enum.Font.Gotham
 			BoxName.Text = name
 			BoxName.TextColor3 = Color3.fromRGB(255, 255, 255)
