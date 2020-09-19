@@ -383,10 +383,10 @@ function Library:Window(title)
 
 			Toggle.MouseButton1Click:Connect(function()
 				if ToggleLogo.BackgroundColor3 == Color3.fromRGB(255, 255, 255) then
-					ToggleLogo.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
 					callback(true)
 				else
-					ToggleLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
 					callback(false)
 				end
 			end)
