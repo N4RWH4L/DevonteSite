@@ -259,7 +259,7 @@ function Library:Window(title)
 			ButtonName.TextSize = 14.000
 			ButtonName.TextWrapped = true
 
-			Button.MouseButton1Down:Connect(function()
+			Button.MouseButton1Click:Connect(function()
 				local c = Instance.new("ImageLabel", Button)
 				local Mouse = game.Players.LocalPlayer:GetMouse()
 				c.BackgroundTransparency = 1
@@ -278,13 +278,12 @@ function Library:Window(title)
 					Size = Button.AbsoluteSize.X*1.5
 				end
 				c:TweenSizeAndPosition(UDim2.new(0, Size, 0, Size), UDim2.new(.5, -Size/2, .5, -Size/2), "Out", "Linear", .5)
-				Button.MouseButton1Up:Connect(function()
-					while c.ImageTransparency ~= 1 do
-						wait()
-						c.ImageTransparency = c.ImageTransparency + 0.02
-						if c.ImageTransparency == 1 then c:Destroy() end
-					end
-				end)
+				wait()
+				while c.ImageTransparency ~= 1 do
+					wait()
+					c.ImageTransparency = c.ImageTransparency + 0.02
+					if c.ImageTransparency == 1 then c:Destroy() end
+				end
 			end)
 		end
 
