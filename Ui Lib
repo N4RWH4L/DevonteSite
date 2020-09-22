@@ -4,7 +4,7 @@ for _, v in pairs(game.CoreGui:GetChildren()) do
 	end
 end
 
-local Library = {}
+local Library = {TabCount = 0}
 
 function Library:Window(title)
 	local ScreenGui = Instance.new("ScreenGui")
@@ -143,14 +143,15 @@ function Library:Window(title)
 		local Container = Instance.new("ScrollingFrame")
 		local UIListLayout_2 = Instance.new("UIListLayout")
 		local UIPadding_2 = Instance.new("UIPadding")
+		local TabCount = 0
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
-		TabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		TabButton.BackgroundColor3 = Library.TabCount == 0 and Color3.fromRGB(1, 255, 120) or Color3.fromRGB(40, 40, 40)
 		TabButton.BorderSizePixel = 0
 		TabButton.ClipsDescendants = true
 		TabButton.Position = UDim2.new(0.0357142873, 0, 0.024630541, 0)
-		TabButton.Size = UDim2.new(0, 104, 0, 28)
+		TabButton.Size = Library.TabCount == 0 and UDim2.new(0, 104, 0, 31) or UDim2.new(0, 104, 0, 28)
 		TabButton.AutoButtonColor = false
 		TabButton.Font = Enum.Font.SourceSans
 		TabButton.Text = ""
@@ -180,6 +181,7 @@ function Library:Window(title)
 		Tab.BorderSizePixel = 0
 		Tab.Position = UDim2.new(0.31195429, 0, 0.024630541, 0)
 		Tab.Size = UDim2.new(0, 267, 0, 227)
+		Tab.Visible = Library.TabCount == 0
 
 		Container.Name = "Container"
 		Container.Parent = Tab
@@ -197,22 +199,6 @@ function Library:Window(title)
 
 		UIPadding_2.Parent = Container
 		UIPadding_2.PaddingTop = UDim.new(0, 5)
-        
-        for i,v in pairs(Main:GetChildren()) do
-            if v.Name == "Tab" then
-                v.Visible = false
-            end
-        end
-        Tab.Visible = true
-        
-        for i,v in pairs(TabHolder:GetChildren()) do
-			if v.Name == "TabButton" then
-				v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-				v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.2, true)
-			end
-		end
-		TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
-		TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.2, true)
 
 		TabButton.MouseButton1Click:Connect(function()
 			for i,v in pairs(Main:GetChildren()) do
@@ -233,6 +219,7 @@ function Library:Window(title)
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
 			TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.15, true)
 		end)
+		Library.TabCount = Library.TabCount + 1
 
 		local Lib = {}
 
