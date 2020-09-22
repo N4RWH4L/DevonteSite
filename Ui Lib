@@ -378,6 +378,7 @@ function Library:Window(title)
 			SliderBack.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 			SliderBack.Position = UDim2.new(-0.228464425, 0, 0.017676767, 0)
 			SliderBack.Size = UDim2.new(0, 248, 0, 28)
+			SliderBack.ClipsDescendants = true
 
 			UICorner_5.CornerRadius = UDim.new(0, 3)
 			UICorner_5.Parent = SliderBack
