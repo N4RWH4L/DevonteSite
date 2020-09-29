@@ -268,7 +268,7 @@ function Library:Window(title)
 				local Mouse = game.Players.LocalPlayer:GetMouse()
 				c.BackgroundTransparency = 1
 				c.Image = "rbxassetid://3570695787"
-				c.ImageTransparency = 0.6
+				c.ImageTransparency = 0.9
 				c.Position = UDim2.new(0, (Mouse.X - c.AbsolutePosition.X), 0, (Mouse.Y - c.AbsolutePosition.Y))
 				c.ScaleType = "Slice"
 				c.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
