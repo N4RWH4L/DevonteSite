@@ -144,7 +144,6 @@ function Library:Window(title)
 		local Container = Instance.new("ScrollingFrame")
 		local UIListLayout_2 = Instance.new("UIListLayout")
 		local UIPadding_2 = Instance.new("UIPadding")
-		local TabCount = 0
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
@@ -208,18 +207,14 @@ function Library:Window(title)
 				end
 			end
 			Tab.Visible = true
-		end)
-		
-		TabButton.MouseButton1Click:Connect(function()
+			
 			for i,v in pairs(TabButton:GetChildren()) do
 				if v.Name == "TabName" then
 					v.TextColor3 = Color3.fromRGB(255, 255, 255)
 				end
 			end
 			TabName.TextColor3 = Color3.fromRGB(30, 30, 30)
-		end)
-
-		TabButton.MouseButton1Down:Connect(function()
+			
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
 					v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
@@ -227,6 +222,7 @@ function Library:Window(title)
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
 		end)
+
 		Library.TabCount = Library.TabCount + 1
 
 		local Lib = {}
