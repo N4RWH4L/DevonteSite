@@ -271,7 +271,7 @@ function Library:Window(title)
 				c.ImageTransparency = 0.6
 				c.Position = UDim2.new(0, (Mouse.X - c.AbsolutePosition.X), 0, (Mouse.Y - c.AbsolutePosition.Y))
 				c.ScaleType = "Slice"
-				c.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+				c.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 				c.SliceCenter = Rect.new(100, 100, 100, 100)
 				c.SliceScale = 1
 				local Size = 0
