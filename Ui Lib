@@ -251,8 +251,8 @@ function Library:Window(title)
 			ButtonName.Parent = Button
 			ButtonName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ButtonName.BackgroundTransparency = 1.000
-			ButtonName.Position = UDim2.new(0.254032254, 0, 0.142857149, 0)
-			ButtonName.Size = UDim2.new(0, 248, 0, 19)
+			ButtonName.Position = UDim2.new(0, 0,0.143, 0)
+			ButtonName.Size = UDim2.new(0, 248,0, 19)
 			ButtonName.Font = Enum.Font.Gotham
 			ButtonName.Text = name
 			ButtonName.TextColor3 = Color3.fromRGB(255, 255, 255)
