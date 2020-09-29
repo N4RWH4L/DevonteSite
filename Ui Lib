@@ -152,7 +152,7 @@ function Library:Window(title)
 		TabButton.BorderSizePixel = 0
 		TabButton.ClipsDescendants = true
 		TabButton.Position = UDim2.new(0.0357142873, 0, 0.024630541, 0)
-		TabButton.Size = Library.TabCount == 0 and UDim2.new(0, 104, 0, 30) or UDim2.new(0, 104, 0, 28)
+		TabButton.Size = UDim2.new(0, 104, 0, 28)
 		TabButton.AutoButtonColor = false
 		TabButton.Font = Enum.Font.SourceSans
 		TabButton.Text = ""
@@ -170,7 +170,7 @@ function Library:Window(title)
 		TabName.Size = UDim2.new(0, 71, 0, 18)
 		TabName.Font = Enum.Font.Gotham
 		TabName.Text = title
-		TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabName.TextColor3 = Library.TabCount == 0 and Color3.fromRGB(30, 30, 30) or Color3.fromRGB(255, 255, 255)
 		TabName.TextScaled = true
 		TabName.TextSize = 14.000
 		TabName.TextWrapped = true
@@ -209,16 +209,23 @@ function Library:Window(title)
 			end
 			Tab.Visible = true
 		end)
+		
+		TabButton.MouseButton1Click:Connect(function()
+			for i,v in pairs(TabButton:GetChildren()) do
+				if v.Name == "TabName" then
+					v.TextColor3 = Color3.fromRGB(255, 255, 255)
+				end
+			end
+			TabName.TextColor3 = Color3.fromRGB(30, 30, 30)
+		end)
 
 		TabButton.MouseButton1Down:Connect(function()
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
 					v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-					v:TweenSize(UDim2.new(0, 104, 0, 28), "Out", "Quad", 0.15, true)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
-			TabButton:TweenSize(UDim2.new(0, 104, 0, 30), "Out", "Quad", 0.15, true)
 		end)
 		Library.TabCount = Library.TabCount + 1
 
