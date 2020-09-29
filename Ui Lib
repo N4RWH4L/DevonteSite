@@ -152,7 +152,7 @@ function Library:Window(title)
 		TabButton.BorderSizePixel = 0
 		TabButton.ClipsDescendants = true
 		TabButton.Position = UDim2.new(0.0357142873, 0, 0.024630541, 0)
-		TabButton.Size = Library.TabCount == 0 and UDim2.new(0, 104, 0, 31) or UDim2.new(0, 104, 0, 28)
+		TabButton.Size = Library.TabCount == 0 and UDim2.new(0, 104, 0, 30) or UDim2.new(0, 104, 0, 28)
 		TabButton.AutoButtonColor = false
 		TabButton.Font = Enum.Font.SourceSans
 		TabButton.Text = ""
@@ -218,7 +218,7 @@ function Library:Window(title)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
-			TabButton:TweenSize(UDim2.new(0, 104, 0, 31), "Out", "Quad", 0.15, true)
+			TabButton:TweenSize(UDim2.new(0, 104, 0, 30), "Out", "Quad", 0.15, true)
 		end)
 		Library.TabCount = Library.TabCount + 1
 
