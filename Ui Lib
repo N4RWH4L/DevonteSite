@@ -23,9 +23,10 @@ function Library:Window(title)
 
 	Top.Name = "Top"
 	Top.Parent = ScreenGui
+	Top.AnchorPoint = Vector2.new(0.5, 0.5)
 	Top.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 	Top.BorderSizePixel = 0
-	Top.Position = UDim2.new(0.335356593, 0, 0.409090906, 0)
+	Top.Position = UDim2.new(0.5, 0, 0.35, 0)
 	Top.Size = UDim2.new(0, 389, 0, 29)
 	Top.Active = true
 
