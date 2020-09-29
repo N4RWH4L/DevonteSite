@@ -506,3 +506,5 @@ function Library:Window(title)
     return TabHolderV
     
 end
+
+return Library
