@@ -169,7 +169,7 @@ function Library:Window(title)
 		TabName.Size = UDim2.new(0, 71, 0, 18)
 		TabName.Font = Enum.Font.Gotham
 		TabName.Text = title
-		TabName.TextColor3 = Library.TabCount == 0 and Color3.fromRGB(30, 30, 30) or Color3.fromRGB(255, 255, 255)
+		TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabName.TextScaled = true
 		TabName.TextSize = 14.000
 		TabName.TextWrapped = true
@@ -207,13 +207,6 @@ function Library:Window(title)
 				end
 			end
 			Tab.Visible = true
-			
-			for i,v in pairs(TabButton:GetChildren()) do
-				if v.Name == "TabName" then
-					v.TextColor3 = Color3.fromRGB(255, 255, 255)
-				end
-			end
-			TabName.TextColor3 = Color3.fromRGB(30, 30, 30)
 			
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
@@ -268,7 +261,7 @@ function Library:Window(title)
 				local Mouse = game.Players.LocalPlayer:GetMouse()
 				c.BackgroundTransparency = 1
 				c.Image = "rbxassetid://3570695787"
-				c.ImageTransparency = 0.9
+				c.ImageTransparency = 0.8
 				c.Position = UDim2.new(0, (Mouse.X - c.AbsolutePosition.X), 0, (Mouse.Y - c.AbsolutePosition.Y))
 				c.ScaleType = "Slice"
 				c.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -513,5 +506,3 @@ function Library:Window(title)
     return TabHolderV
     
 end
-
-return Library
