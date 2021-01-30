@@ -169,7 +169,7 @@ function Library:Window(title)
 		TabName.Size = UDim2.new(0, 71, 0, 18)
 		TabName.Font = Enum.Font.Gotham
 		TabName.Text = title
-		TabName.TextColor3 = Library.TabCount == 0 and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(255, 255, 255)
+		TabName.TextColor3 = Library.TabCount == 0 and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(255, 255, 255)
 		TabName.TextScaled = true
 		TabName.TextSize = 14.000
 		TabName.TextWrapped = true
@@ -215,7 +215,7 @@ function Library:Window(title)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
-			TabName.TextColor3 = Color3.fromRGB(200, 200, 200)
+			TabName.TextColor3 = Color3.fromRGB(60, 60, 60)
 		end)
 
 		Library.TabCount = Library.TabCount + 1
@@ -319,7 +319,7 @@ function Library:Window(title)
 			ToggleLogo.Parent = ToggleBack
 			ToggleLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			ToggleLogo.Position = UDim2.new(0.0282258056, 0, 0.178571433, 0)
-			ToggleLogo.Size = UDim2.new(0, 19, 0, 17)
+			ToggleLogo.Size = UDim2.new(0, 20, 0, 17)
 
 			UICorner_4.CornerRadius = UDim.new(0, 3)
 			UICorner_4.Parent = ToggleLogo
@@ -340,10 +340,10 @@ function Library:Window(title)
 
 			Toggle.MouseButton1Click:Connect(function()
 				if ToggleLogo.BackgroundColor3 == Color3.fromRGB(255, 255, 255) then
-					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
 					callback(true)
 				else
-					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
 					callback(false)
 				end
 			end)
@@ -452,10 +452,10 @@ function Library:Window(title)
 
 			Box.Name = "Box"
 			Box.Parent = BoxBack
-			Box.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+			Box.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 			Box.ClipsDescendants = true
-			Box.Position = UDim2.new(0.725806475, 0, 0, 0)
-			Box.Size = UDim2.new(0, 68, 0, 28)
+			Box.Position = UDim2.new(0.735, 0, 0.1, 0)
+			Box.Size = UDim2.new(0, 63, 0, 23)
 			Box.Font = Enum.Font.Gotham
 			Box.Text = string
 			Box.TextColor3 = Color3.fromRGB(255, 255, 255)
