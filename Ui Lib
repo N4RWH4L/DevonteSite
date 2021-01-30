@@ -169,7 +169,7 @@ function Library:Window(title)
 		TabName.Size = UDim2.new(0, 71, 0, 18)
 		TabName.Font = Enum.Font.Gotham
 		TabName.Text = title
-		TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabName.TextColor3 = Library.TabCount == 0 and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(255, 255, 255)
 		TabName.TextScaled = true
 		TabName.TextSize = 14.000
 		TabName.TextWrapped = true
@@ -211,9 +211,11 @@ function Library:Window(title)
 			for i,v in pairs(TabHolder:GetChildren()) do
 				if v.Name == "TabButton" then
 					v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+					v.TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
 				end
 			end
 			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+			TabName.TextColor3 = Color3.fromRGB(200, 200, 200)
 		end)
 
 		Library.TabCount = Library.TabCount + 1
