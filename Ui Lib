@@ -448,6 +448,7 @@ function Library:Window(title)
 			BoxBack.Parent = Container
 			BoxBack.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 			BoxBack.Size = UDim2.new(0, 248, 0, 28)
+			BoxBack.ClipsDescendants = true
 
 			Box.Name = "Box"
 			Box.Parent = BoxBack
