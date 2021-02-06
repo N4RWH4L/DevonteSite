@@ -137,7 +137,7 @@ function Library:Main(title, subtitle)
 
     local TabHolded = {}
         
-    function TabHolded:Tab(name)
+    function TabHolded:Tab(name, hubname)
         local TabButton = Instance.new("TextButton")
         local UICorner_14 = Instance.new("UICorner")
         local TabName = Instance.new("TextLabel")
@@ -202,7 +202,7 @@ function Library:Main(title, subtitle)
         HubTitle.Position = UDim2.new(0.365663826, 0, 0.0233895574, 0)
         HubTitle.Size = UDim2.new(0, 115, 0, 23)
         HubTitle.Font = Enum.Font.GothamSemibold
-        HubTitle.Text = "Tab"
+        HubTitle.Text = hubname
         HubTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
         HubTitle.TextScaled = true
         HubTitle.TextSize = 14.000
