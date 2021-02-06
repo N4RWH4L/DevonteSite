@@ -393,7 +393,7 @@ function Library:Main(title, subtitle)
             SliderValue.Position = UDim2.new(0.834965587, 0, 0.0738662705, 0)
             SliderValue.Size = UDim2.new(0, 52, 0, 16)
             SliderValue.Font = Enum.Font.GothamSemibold
-            SliderValue.Text = tostring(start .. "/" .. max)
+            SliderValue.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0) .. "/" .. max
             SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
             SliderValue.TextScaled = true
             SliderValue.TextSize = 14.000
@@ -413,42 +413,42 @@ function Library:Main(title, subtitle)
             Slider.Parent = SliderBack2
             Slider.BackgroundColor3 = Color3.fromRGB(3, 146, 255)
             Slider.Position = UDim2.new(-0.00071832363, 0, 0, 0)
-            Slider.Size = UDim2.new(0, 178, 0, 5)
+            Slider.Size = UDim2.new((start or 0) / max, 0, 1, 0);
 
             UICorner_5.CornerRadius = UDim.new(0, 100)
             UICorner_5.Parent = Slider
 
             local function slide(input)
-				local pos = UDim2.new(math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1), 0, 1, 0);
-				Slider:TweenSize(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true);
-				local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min);
-				SliderValue.Text = tostring(value) .. "/" .. max;
-				callback(value);
+		local pos = UDim2.new(math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1), 0, 1, 0);
+		Slider:TweenSize(pos, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2, true);
+		local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min);
+		SliderValue.Text = tostring(value) .. "/" .. max;
+		callback(value);
+		end;
+
+		SliderBack.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = true;
 			end;
+		end);
 
-			SliderBack.InputBegan:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.MouseButton1 then
-					dragging = true;
-				end;
-			end);
+		SliderBack.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = false;
+			end;
+		end);
 
-			SliderBack.InputEnded:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.MouseButton1 then
-					dragging = false;
-				end;
-			end);
+		SliderBack.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				slide(input);
+			end;
+		end);
 
-			SliderBack.InputBegan:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.MouseButton1 then
-					slide(input);
-				end;
-			end);
-
-			game:GetService("UserInputService").InputChanged:Connect(function(input)
-				if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-					slide(input);
-				end;
-			end);
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+				slide(input);
+			end;
+		end);
         end
 
         function Lib:Dropdown(name, options, callback)
