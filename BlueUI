@@ -710,7 +710,7 @@ function Library:Main(title, subtitle)
             Label.TextWrapped = true
         end
 
-        function Lib:KeyBind(name, key, callback) 
+        function Lib:KeyBind(name, presetKeyCode, callback) 
             local KeyBindBack = Instance.new("TextButton")
             local UICorner_9 = Instance.new("UICorner")
             local KeyBindName = Instance.new("TextLabel")
@@ -779,8 +779,9 @@ function Library:Main(title, subtitle)
 
             local enabled = false;
             local listening = false;
-            local toggle = false
             local bindBtn = KeyBindKey
+	    local activated = presetKeyCode and true or false;
+    	    local keyCode = presetKeyCode;
                 
             game:GetService("UserInputService").InputBegan:Connect(function(input, onGui)
                 if onGui then return; end;
