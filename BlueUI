@@ -806,6 +806,7 @@ function Library:Main(title, subtitle)
                     end);
                 elseif activated and not listening and input.KeyCode == keyCode then
                     enabled = not enabled;
+		    callback(enabled);
                 end;
             end);
                 
@@ -819,30 +820,9 @@ function Library:Main(title, subtitle)
                 activated = false;
                 listening = true;
             end);
-                
-            spawn(function()
-                game:getService("RunService"):BindToRenderStep("",0,function()
-                    game:GetService("UserInputService").InputBegan:Connect(function(input, onGui)
-                        if bindBtn.Text == tostring(input.KeyCode.Name) then
-                            toggle = not toggle
-                            if KeyBindIntercept.BackgroundColor3 == Color3.fromRGB(255, 255, 255) then
-                                if toggle then
-                                    if Main.Size == UDim2.new(0, 519,0, 331)then
-                                        Main:TweenSize(UDim2.new(0, 0, 0, 0), "InOut", "Linear", 0.2, true)
-                                    end
-                                else
-                                    if Main.Size == UDim2.new(0, 0,0, 0)then
-                                        Main:TweenSize(UDim2.new(0, 519,0, 331), "InOut", "Linear", 0.2, true)
-                                    end
-                                end
-                            end
-                        end
-                    end)
-                end)	
-            end)
         end
 		
-		return Lib
+	return Lib
 		
 	end
 	
