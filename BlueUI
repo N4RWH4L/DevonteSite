@@ -323,6 +323,7 @@ function Library:Main(title, subtitle)
             local toggle = false
             ToggleTouch.MouseButton1Click:Connect(function()
                 toggle = not toggle
+		callback(toggle)
                 if toggle then 
                     Toggle:TweenPosition(UDim2.new(0.52, 0,0.1, 0),"InOut", "Quad", 0.3, true)
                     game:GetService("TweenService"):Create(ToggleBack, TweenInfo.new(0.3), {ImageColor3 = Color3.fromRGB(3, 146, 255)}):Play()
