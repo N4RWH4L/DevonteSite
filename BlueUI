@@ -703,6 +703,7 @@ function Library:Main(title, subtitle)
             end)
             Box.FocusLost:Connect(function()
                 KeyBindIntercept.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		callback(Box.Text)
             end)
         end
 
