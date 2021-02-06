@@ -722,7 +722,7 @@ function Library:Main(title, subtitle)
             Label.TextWrapped = true
         end
 
-        function Lib:KeyBind(name, key) 
+        function Lib:KeyBind(name, key, callback) 
             local KeyBindBack = Instance.new("TextButton")
             local UICorner_9 = Instance.new("UICorner")
             local KeyBindName = Instance.new("TextLabel")
