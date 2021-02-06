@@ -764,7 +764,7 @@ function Library:Main(title, subtitle)
             KeyBindKey.Position = UDim2.new(0.055555556, 0, 0, 0)
             KeyBindKey.Size = UDim2.new(0, 48, 0, 19)
             KeyBindKey.Font = Enum.Font.GothamSemibold
-            KeyBindKey.Text = key
+            KeyBindKey.Text = presetKeyCode and tostring(string.char(presetKeyCode.Value)) or "...";
             KeyBindKey.TextColor3 = Color3.fromRGB(3, 146, 255)
             KeyBindKey.TextScaled = true
             KeyBindKey.TextSize = 14.000
